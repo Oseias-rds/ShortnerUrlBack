@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+
+import com.example.shortenerurl.controller.ShortenerController;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +20,7 @@ public class ShortenerService {
 
     public String longToShort(String longUrl) {
 
+
         if(longUrl.trim().equals("")) {
             return null;
         }
@@ -25,7 +29,10 @@ public class ShortenerService {
         StringBuilder shortUrlBuilder = new StringBuilder();
 
         // Gerando a sequência de caracteres do short URL
+
         Random random = new Random(System.nanoTime());
+
+        
         for (int i = 0; i < SHORT_URL_LENGTH; i++) {
             int randomIndex = random.nextInt(ALLOWED_CHARACTERS.length());
             char randomChar = ALLOWED_CHARACTERS.charAt(randomIndex);
@@ -37,10 +44,13 @@ public class ShortenerService {
 
         // Armazenando a relação entre a URL curta (shortUrl) e a URL longa (longUrl) no mapa
         urlMap.put(shortUrl, longUrl);
+
         counters.put(shortUrl, 0);
+
 
         return shortUrl;
     }
+
 
     public String shortToLong(String shortUrl) {
 
